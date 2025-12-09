@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-open-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-oswald: "Oswald", ui-sans-serif, system-ui, sans-serif;
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
+}
+
+@layer base{
+  
+h1{
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
+}
+
+}
+
+@layer components {
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-[rgb(11,58,96)] uppercase tracking-wide;
+  }
+}
+
+/* Container System (Tailwind v3 → Tailwind v4 Conversion) */
+@layer utilities {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* same as Tailwind container padding */
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px; /* sm */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px; /* md */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px; /* lg */
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px; /* xl */
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1400px; /* 2xl */
+    }
+  }
+
+  /* Your custom utilities */
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(41, 128, 185, 0.9) 100%);
+  }
+
+  .section-dark {
+    background: linear-gradient(135deg, #1a3a6e 0%, #2980b9 100%);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition-colors duration-200 inline-flex items-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200 border border-gray-200 inline-flex items-center gap-2;
+  }
+
+  .stat-box {
+    @apply bg-white rounded-lg p-6 shadow-lg;
+  }
+    /* Hide scrollbar for horizontal scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+ 
