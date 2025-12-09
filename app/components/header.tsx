@@ -5,10 +5,10 @@ import { Menu, X, Search, Facebook, Linkedin, Twitter, Youtube } from "lucide-re
 import Image from "next/image"
 
 const navItems = [
-  { label: "HOME", href: "#" },
+  { label: "HOME", href: "/" },
   { label: "COMPANY", href: "/company" },
   { label: "PRODUCTS", href: "/products" },
-  { label: "DISTRIBUTOR LOCATION", href: "distributor" },
+  { label: "DISTRIBUTOR LOCATION", href: "/distributor" },
   { label: "CAREERS", href: "/careers" },
   { label: "CONTACT US", href: "/contact" },
   { label: "QUICK LINKS", href: "/quick" },
