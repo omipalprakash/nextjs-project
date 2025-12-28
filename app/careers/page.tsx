@@ -1,13 +1,13 @@
-import HeroBanner from "../company/components/HeroBanner"
-import Employment from "./components/Employment"
+import HeroBanner from "../../components/Helper/HeroBanner";
+import Employment from "./components/Employment";
 
 const CareersPage = () => {
   return (
     <>
-    <HeroBanner/>
-    <Employment/>
+      <HeroBanner />
+      <Employment />
     </>
-  )
-}
+  );
+};
 
 export default CareersPage;

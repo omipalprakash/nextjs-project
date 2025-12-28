@@ -1,4 +1,4 @@
-import HeroBanner from "./components/HeroBanner";
+import HeroBanner from "../../components/Helper/HeroBanner";
 import MissionStatement from "./components/MissionStatement";
 import OurCompany from "./components/OurCompany";
 import ContinuousGoal from "./components/ContinuousGoal";
@@ -6,12 +6,12 @@ import ContinuousGoal from "./components/ContinuousGoal";
 const CompanyPage = () => {
   return (
     <>
-    <HeroBanner/>
-    <MissionStatement/>
-    <OurCompany/>
-    <ContinuousGoal/>
+      <HeroBanner />
+      <MissionStatement />
+      <OurCompany />
+      <ContinuousGoal />
     </>
-  )
-}
+  );
+};
 
 export default CompanyPage;

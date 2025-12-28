@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
+import Link from "next/link";
 
 export default function ContactSection() {
-  const [region, setRegion] = useState("any")
-  const [productCategory, setProductCategory] = useState("any")
+  const [region, setRegion] = useState("any");
+  const [productCategory, setProductCategory] = useState("any");
 
   const departments = [
     { name: "Corporate Office", phone: "(310) 693-8200" },
@@ -13,34 +14,27 @@ export default function ContactSection() {
     { name: "Plumbing", phone: "(310) 693-8413" },
     { name: "Irrigation", phone: "(310) 693-8414" },
     { name: "Retail", phone: "(310) 693-8415" },
-  ]
+  ];
 
   return (
-    <div style={{ backgroundColor: "#f8f8f8", minHeight: "100vh", paddingTop: "60px", paddingBottom: "60px" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}>
-        {/* Page Title */}
-        <h1
-          style={{ fontSize: "48px", fontWeight: "bold", color: "#0066cc", textAlign: "center", marginBottom: "40px" }}
-        >
-          Contact
-        </h1>
+    <section className="section-padding bg-[#f8f8f8]">
+      <div className="container">
+        <div className="text-center mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase leading-tight text-[rgb(11,58,96)]">
+            Contact
+          </h1>
+        </div>
 
         {/* Filter Section */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "40px", marginBottom: "60px", flexWrap: "wrap" }}>
+        <div className="flex justify-center gap-10 mb-[60px] flex-wrap">
+          {/* Region */}
           <div>
-            <label style={{ display: "block", marginBottom: "8px", fontWeight: "500", color: "#333" }}>Region</label>
+            <label className="block mb-2 font-medium text-[#333]">Region</label>
             <select
               value={region}
               onChange={(e) => setRegion(e.target.value)}
-              style={{
-                padding: "8px 12px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                backgroundColor: "#fff",
-                fontSize: "14px",
-                cursor: "pointer",
-                minWidth: "150px",
-              }}
+              className="min-w-[150px] px-3 py-2 text-sm bg-white border border-gray-300 rounded
+                         cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0066cc]"
             >
               <option value="any">- Any -</option>
               <option value="north">North</option>
@@ -50,22 +44,16 @@ export default function ContactSection() {
             </select>
           </div>
 
+          {/* Product Category */}
           <div>
-            <label style={{ display: "block", marginBottom: "8px", fontWeight: "500", color: "#333" }}>
+            <label className="block mb-2 font-medium text-[#333]">
               Product Category
             </label>
             <select
               value={productCategory}
               onChange={(e) => setProductCategory(e.target.value)}
-              style={{
-                padding: "8px 12px",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                backgroundColor: "#fff",
-                fontSize: "14px",
-                cursor: "pointer",
-                minWidth: "150px",
-              }}
+              className="min-w-[150px] px-3 py-2 text-sm bg-white border border-gray-300 rounded
+                         cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0066cc]"
             >
               <option value="any">- Any -</option>
               <option value="waterworks">Waterworks Pipe</option>
@@ -78,29 +66,22 @@ export default function ContactSection() {
         </div>
 
         {/* Contact Information */}
-        <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "30px", marginBottom: "40px" }}>
+        <div className="flex justify-center flex-wrap gap-[30px] mb-10">
           {departments.map((dept) => (
-            <div key={dept.name} style={{ textAlign: "center" }}>
-              <p style={{ fontSize: "14px", fontWeight: "500", color: "#333", marginBottom: "8px" }}>{dept.name}:</p>
-              <a
+            <div key={dept.name} className="text-center">
+              <p className="text-sm font-medium text-[#333] mb-2">
+                {dept.name}:
+              </p>
+              <Link
                 href={`tel:${dept.phone.replace(/[^0-9]/g, "")}`}
-                style={{
-                  fontSize: "14px",
-                  color: "#0066cc",
-                  textDecoration: "none",
-                  fontWeight: "500",
-                  cursor: "pointer",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#004999")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#0066cc")}
+                className="text-sm font-medium text-[#0066cc] transition-colors duration-200 hover:text-[#004999]"
               >
                 {dept.phone}
-              </a>
+              </Link>
             </div>
           ))}
         </div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }

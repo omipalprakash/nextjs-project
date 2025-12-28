@@ -1,13 +1,13 @@
-import HeroBanner from './components/HeroBanner'
-import ProductsSection from './components/ProductsSection'
+import HeroBanner from "../../components/Helper/HeroBanner";
+import ProductsSection from "./components/ProductsSection";
 
 const page = () => {
   return (
-<>
-    <HeroBanner/>
-    <ProductsSection/>
-</>
-  )
-}
+    <>
+      <HeroBanner />
+      <ProductsSection />
+    </>
+  );
+};
 
-export default page
+export default page;

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import Image from "next/image"
+import Image from "next/image";
 
 const products = [
   {
@@ -63,31 +63,40 @@ const products = [
     image: "/products/n_PEfittings.jpg",
     span: "col-span-1 row-span-1",
   },
-]
+];
 
 export default function ProductsSection() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-padding bg-white">
+      <div className="container">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0066cc] mb-6 sm:mb-8">Products</h1>
-          <p className="text-sm sm:text-base text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            JM Eagle offers the most comprehensive line of plastic pipes on the planet. Whether it's our PVC, Polyvinyl
-            Chloride, Polyethylene or ABS Unoincorporate Butadiene Styrene, JM Eagle products are the very best for
-            their application. In addition to meeting the required specifications, JM Eagle and our industry leading
-            team also guarantees the best quality and performance over time. Because they are plastic, they will not
-            corrode or become brittle. The best plastic pipe and is also a member of the US Green Building Council
-            (USGBC).
-          </p>
-        </div>
+        <div className="section-box">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase leading-tight text-[rgb(11,58,96)] mb-3">
+            Products
+          </h1>
 
-        {/* USGBC Badge */}
-        <div className="flex justify-center mb-16 sm:mb-20">
-          <div className="text-center">
-            <div className="inline-block">
-              <span className="text-[#00a35a] font-bold text-sm uppercase tracking-wide">USGBC</span>
-              <p className="text-xs text-gray-600 mt-1">Certified</p>
+          <div className="section-content">
+            <p>
+              JM Eagle offers the most comprehensive line of plastic pipes on
+              the planet. Whether it's our PVC, Polyvinyl Chloride, Polyethylene
+              or ABS Unoincorporate Butadiene Styrene, JM Eagle products are the
+              very best for their application. In addition to meeting the
+              required specifications, JM Eagle and our industry leading team
+              also guarantees the best quality and performance over time.
+              Because they are plastic, they will not corrode or become brittle.
+              The best plastic pipe and is also a member of the US Green
+              Building Council (USGBC).
+            </p>
+            {/* USGBC Badge */}
+            <div className="flex justify-center">
+              <div className="text-center">
+                <div className="inline-block">
+                  <span className="text-[#00a35a] font-bold text-sm uppercase tracking-wide">
+                    USGBC
+                  </span>
+                  <p className="text-xs text-gray-600 mt-1">Certified</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -115,5 +124,5 @@ export default function ProductsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

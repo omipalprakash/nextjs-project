@@ -1,16 +1,15 @@
-import HeroBanner from "./components/HeroBanner";
-import DistributorLocator from "./components/DistributorLocator";
-
-
+import HeroBanner from "../../components/Helper/HeroBanner";
+import { Locations } from "./components/Locations";
+// import DistributorLocator from "./components/DistributorLocator";
 
 const DistributorPage = () => {
   return (
-<>
- <HeroBanner/>
-    <DistributorLocator/>
-   
-</>
-  )
-}
+    <>
+      <HeroBanner />
+      {/* <DistributorLocator /> */}
+      <Locations />
+    </>
+  );
+};
 
 export default DistributorPage;

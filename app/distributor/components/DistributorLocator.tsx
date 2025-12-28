@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
 interface Distributor {
-  id: number
-  name: string
-  address: string
-  phone: string
-  fax: string
-  products: string[]
+  id: number;
+  name: string;
+  address: string;
+  phone: string;
+  fax: string;
+  products: string[];
 }
 
 // Sample distributor data
@@ -53,7 +53,10 @@ const distributors: Distributor[] = [
     address: "8 BUTTE ROAD\nJERONE, DE 19333",
     phone: "(208) 324-9551",
     fax: "(208) 324-9553",
-    products: ["Irrigation and 2:1 Pressure Rated Pipe (IPS)", "Plumbing Pipe (PVC Solvent Welds)"],
+    products: [
+      "Irrigation and 2:1 Pressure Rated Pipe (IPS)",
+      "Plumbing Pipe (PVC Solvent Welds)",
+    ],
   },
   {
     id: 5,
@@ -61,7 +64,10 @@ const distributors: Distributor[] = [
     address: "1 MILE N. HWY 1 HWY 873\nBROOKS, ALBERTA, AB T1R 1-1",
     phone: "(403) 362-7651",
     fax: "(403) 362-7629",
-    products: ["Irrigation and 2:1 Pressure Rated Pipe (IPS)", "Plumbing Pipe (PVC Solvent Welds)"],
+    products: [
+      "Irrigation and 2:1 Pressure Rated Pipe (IPS)",
+      "Plumbing Pipe (PVC Solvent Welds)",
+    ],
   },
   {
     id: 6,
@@ -77,7 +83,10 @@ const distributors: Distributor[] = [
     address: "19170 GOLDEN STATE BLVD\nMADERA, CA 93637",
     phone: "(559) 673-4261",
     fax: "(559) 674-4078",
-    products: ["Irrigation and 2:1 Pressure Rated Pipe (IPS)", "Plumbing Pipe (PVC Solvent Welds)"],
+    products: [
+      "Irrigation and 2:1 Pressure Rated Pipe (IPS)",
+      "Plumbing Pipe (PVC Solvent Welds)",
+    ],
   },
   {
     id: 8,
@@ -144,23 +153,26 @@ const distributors: Distributor[] = [
       "Sewer Pipe and Fittings (Locked-in gasket)",
     ],
   },
-]
+];
 
-const ITEMS_PER_PAGE = 12
+const ITEMS_PER_PAGE = 12;
 
 export default function DistributorLocator() {
-  const [distance, setDistance] = useState("10")
-  const [origin, setOrigin] = useState("")
-  const [selectedProduct, setSelectedProduct] = useState("")
-  const [currentPage, setCurrentPage] = useState(1)
+  const [distance, setDistance] = useState("10");
+  const [origin, setOrigin] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const totalPages = Math.ceil(distributors.length / ITEMS_PER_PAGE)
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-  const currentDistributors = distributors.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+  const totalPages = Math.ceil(distributors.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentDistributors = distributors.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE
+  );
 
   const handleApply = () => {
-    setCurrentPage(1)
-  }
+    setCurrentPage(1);
+  };
 
   const productTypes = [
     "Waterworks Pipe (C900 & C905)",
@@ -169,17 +181,18 @@ export default function DistributorLocator() {
     "Sewer Pipe and Fittings (Locked-in gasket)",
     "Plumbing Pipe (PVC Solvent Welds)",
     "Electrical Conduit",
-  ]
+  ];
 
   return (
-    <div className="min-h-screen bg-white">
-
+    <div className="section-padding min-h-screen bg-white">
       {/* Search Filters Section */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {/* Distance Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Distance from location</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Distance from location
+            </label>
             <div className="flex gap-2">
               <input
                 type="number"
@@ -187,7 +200,10 @@ export default function DistributorLocator() {
                 onChange={(e) => setDistance(e.target.value)}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded"
               />
-              <select defaultValue="miles" className="px-3 py-2 border border-gray-300 rounded bg-white">
+              <select
+                defaultValue="miles"
+                className="px-3 py-2 border border-gray-300 rounded bg-white"
+              >
                 <option value="miles">Miles</option>
                 <option value="km">Kilometers</option>
               </select>
@@ -196,7 +212,9 @@ export default function DistributorLocator() {
 
           {/* Origin Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">from</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              from
+            </label>
             <input
               type="text"
               placeholder="Origin"
@@ -208,7 +226,9 @@ export default function DistributorLocator() {
 
           {/* Product Type Select */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Product Type</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Product Type
+            </label>
             <select
               value={selectedProduct}
               onChange={(e) => setSelectedProduct(e.target.value)}
@@ -224,25 +244,15 @@ export default function DistributorLocator() {
           </div>
 
           {/* Apply Button */}
-          <div className="flex items-end">
+          <div className="flex items-center justify-center">
             <button
+              className="btn-green"
               onClick={handleApply}
-              style={{
-                width: "100%",
-                backgroundColor: "#22c55e",
-                color: "white",
-                fontWeight: "600",
-                padding: "8px 16px",
-                borderRadius: "4px",
-                border: "none",
-                cursor: "pointer",
-                fontSize: "14px",
-              }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#16a34a"
+                e.currentTarget.style.backgroundColor = "#16a34a";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#22c55e"
+                e.currentTarget.style.backgroundColor = "#22c55e";
               }}
             >
               APPLY
@@ -259,8 +269,12 @@ export default function DistributorLocator() {
               key={distributor.id}
               className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow"
             >
-              <h3 className="text-sm font-bold text-teal-600 mb-2">{distributor.name}</h3>
-              <p className="text-xs text-gray-600 mb-3 whitespace-pre-line">{distributor.address}</p>
+              <h3 className="text-sm font-bold text-teal-600 mb-2">
+                {distributor.name}
+              </h3>
+              <p className="text-xs text-gray-600 mb-3 whitespace-pre-line">
+                {distributor.address}
+              </p>
               <div className="text-xs text-gray-600 mb-3">
                 <p className="font-semibold">Phone: {distributor.phone}</p>
                 <p className="font-semibold">Fax: {distributor.fax}</p>
@@ -349,5 +363,5 @@ export default function DistributorLocator() {
         </div>
       </div>
     </div>
-  )
+  );
 }
