@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Home/Header/Header";
 import Footer from "@/components/Home/Footer/Footer";
 import ScrollToTop from "@/components/Helper/ScrollToTop";
+import Breadcrumb from "@/components/Helper/breadcrumb";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -56,6 +57,7 @@ export default function RootLayout({
         className={`${openSans.variable} ${oswald.variable} ${geistSans.variable} ${geistMono.variable} font-open-sans antialiased bg-white text-[#67737e] leading-1.5`}
       >
         <Header />
+        <Breadcrumb />
         <main>{children}</main>
         <Footer />
         <ScrollToTop />

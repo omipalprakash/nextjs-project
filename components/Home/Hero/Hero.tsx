@@ -40,7 +40,7 @@ export default function Hero() {
           {/* Main heading */}
           <div className="space-y-1 sm:space-y-2">
             <h1 className=" text-white leading-tight">
-              APEX<span className="text-[#00a35a]">PIPE</span>
+              JM<span className="text-[#00a35a]">Eagle</span>
             </h1>
             <p className="font-display text-xl sm:text-2xl md:text-3xl text-white/90 font-medium">
               BUILDING AMERICA'S FUTURE
