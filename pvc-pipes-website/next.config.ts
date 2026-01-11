@@ -2,9 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true, // ✅ OK for Strapi Cloud
+    unoptimized: true, // ✅ Strapi Cloud के लिए OK
     remotePatterns: [
-      // 🔹 LOCAL STRAPI
+      // 🔹 LOCAL STRAPI (development)
       {
         protocol: "http",
         hostname: "localhost",
@@ -12,10 +12,10 @@ const nextConfig: NextConfig = {
         pathname: "/uploads/**",
       },
 
-      // 🔹 STRAPI CLOUD (PRODUCTION)
+      // 🔹 STRAPI CLOUD (production)
       {
         protocol: "https",
-        hostname: "splendid-boot-3cb33a55a4.strapiapp.com",
+        hostname: "splendid-boot-3cb33a55a4.media.strapiapp.com",
         pathname: "/uploads/**",
       },
     ],
