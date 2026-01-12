@@ -1,52 +1,30 @@
 "use client";
+
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import Image from "next/image";
+
+import { ApplicationsBlock } from "@/types/application";
 
 import "swiper/css";
 import "swiper/css/navigation";
 
-const applications = [
-  {
-    title: "Municipalities",
-    slug: "municipalities",
-    image: "/pipes-1.jpg",
-    description: "Water & sewer systems",
-  },
-  {
-    title: "Plumbing",
-    slug: "plumbing",
-    image: "/pipes-2.jpg",
-    description: "Residential & commercial",
-  },
-  {
-    title: "Storm Water",
-    slug: "storm-water",
-    image: "/pipes-3.jpg",
-    description: "Drainage solutions",
-  },
-  {
-    title: "Golf Turf",
-    slug: "golf-turf",
-    image: "/pipes-4.jpg",
-    description: "Irrigation systems",
-  },
-  {
-    title: "Industrial",
-    slug: "industrial",
-    image: "/pipes-1.jpg",
-    description: "Heavy-duty applications",
-  },
-];
-export default function Applications() {
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL!;
+
+type ApplicationsProps = {
+  data: ApplicationsBlock;
+};
+
+export default function Applications({ data }: ApplicationsProps) {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
+
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-white" id="applications">
       <div className="container">
         {/* Header */}
         <div className="section-box">
@@ -58,7 +36,6 @@ export default function Applications() {
           </p>
         </div>
 
-        {/* Slider */}
         <div className="relative">
           {/* Navigation */}
           <button
@@ -82,16 +59,11 @@ export default function Applications() {
               swiper.params.navigation.prevEl = prevRef.current;
               // @ts-ignore
               swiper.params.navigation.nextEl = nextRef.current;
-
               swiper.navigation.init();
               swiper.navigation.update();
             }}
-            navigation
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop={data.cards.length > 5}
             spaceBetween={24}
             slidesPerView={1}
             breakpoints={{
@@ -100,35 +72,47 @@ export default function Applications() {
               1024: { slidesPerView: 5 },
             }}
           >
-            {applications.map((app, index) => (
-              <SwiperSlide
-                key={index}
-                className="group cursor-pointer flex-shrink-0 w-[45%] sm:w-[40%] md:w-auto snap-center"
-              >
-                <Link href={`/applications/${app.slug}`} className="block">
-                  <div className="relative overflow-hidden rounded-lg shadow-md">
-                    <Image
-                      src={app.image || "/placeholder.svg"}
-                      alt={app.title}
-                      width={640}
-                      height={640}
-                      className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(11,58,96,0.8)] to-transparent md:opacity-0 opacity-100 md:group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
-                      <p className="text-white text-xs sm:text-sm md:opacity-0 opacity-100 md:group-hover:opacity-100 transition-opacity duration-300">
-                        {app.description}
-                      </p>
+            {data.cards.map((card) => {
+              const imageUrl = card.image?.url?.startsWith("http")
+                ? card.image.url
+                : card.image?.url
+                ? `${STRAPI_URL}${card.image.url}`
+                : null;
+
+              return (
+                <SwiperSlide
+                  key={card.id}
+                  className="group cursor-pointer flex-shrink-0 w-[45%] sm:w-[40%] md:w-auto snap-center"
+                >
+                  <Link href={`/applications/${card.slug}`} className="block">
+                    <div className="relative overflow-hidden rounded-lg shadow-md">
+                      {imageUrl && (
+                        <Image
+                          src={imageUrl}
+                          alt={card.image?.alternativeText ?? card.title}
+                          width={640}
+                          height={640}
+                          className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      )}
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(11,58,96,0.8)] to-transparent md:opacity-0 opacity-100 md:group-hover:opacity-100 transition-opacity duration-300" />
+
+                      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300">
+                        <p className="text-white text-xs sm:text-sm md:opacity-0 opacity-100 md:group-hover:opacity-100 transition-opacity duration-300">
+                          {card.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-2 sm:mt-3 text-center">
-                    <h3 className="font-semibold text-gray-900 group-hover:text-[#00a35a] transition-colors text-sm sm:text-base">
-                      {app.title}
-                    </h3>
-                  </div>
-                </Link>
-              </SwiperSlide>
-            ))}
+                    <div className="mt-2 sm:mt-3 text-center">
+                      <h3 className="font-semibold text-gray-900 group-hover:text-[#00a35a] transition-colors text-sm sm:text-base">
+                        {card.title}
+                      </h3>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </div>
