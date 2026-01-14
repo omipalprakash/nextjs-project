@@ -12,5 +12,6 @@ export type ApplicationCard = {
 export type ApplicationsBlock = {
   id: number;
   __component: "blocks.card-grid";
+  section_type: "applications" | "support" | "performance" | "power";
   cards: ApplicationCard[];
 };

@@ -174,7 +174,7 @@ export default function Footer({ footerData }: FooterProps) {
               Contact Us
             </h3>
             <div className="space-y-3 sm:space-y-4">
-              <div className="flex items-start gap-2 sm:gap-3 flex-col">
+              <div className="flex items-start gap-2 sm:gap-3 flex-col leading-5">
                 {footerData.contactLinks.map((item) => (
                   <Link
                     key={item.id}

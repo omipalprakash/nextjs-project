@@ -9,6 +9,15 @@ type Crumb = {
   path: string;
 };
 
+const STRENGTH_TITLES: Record<string, string> = {
+  "product-installation-guides": "Product Installation Guides",
+  "product-catalog": "Product Catalog",
+  "installation-calculators": "Installation Calculators",
+  "50-year-warranty": "50 Year Warranty",
+  "technical-information": "Technical Information",
+  "terms-and-conditions": "Terms and Conditions",
+};
+
 const EVENT_TITLES: Record<string, string> = {
   "ngwa-2025": "NGWA 2025",
   "ia-show-2025": "IA Show 2025",
@@ -53,6 +62,11 @@ export default function Breadcrumb() {
     "/events": [
       { name: "Home", path: "/" },
       { name: "Events", path: "/events" },
+    ],
+    // ✅ ADD THIS
+    "/strength": [
+      { name: "Home", path: "/" },
+      { name: "Strength of Performance", path: "/strength" },
     ],
   };
 
@@ -113,6 +127,42 @@ export default function Breadcrumb() {
         </nav>
       );
     }
+  }
+
+  /**
+   * ================= STRENGTH DETAIL =================
+   * /strength/[slug]
+   * Home > Strength of Performance > Page Title
+   */
+  if (pathname.startsWith("/strength/")) {
+    const slug = pathname.split("/")[2];
+    const title = STRENGTH_TITLES[slug] || "Strength Details";
+
+    return (
+      <nav className="bg-gray-50 border-b border-gray-200 py-3 px-4">
+        <div className="max-w-7xl mx-auto">
+          <ol className="flex items-center gap-2 text-sm text-gray-600">
+            <li>
+              <Link href="/" className="hover:text-gray-900">
+                Home
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li>
+              <Link href="/strength" className="hover:text-gray-900">
+                Strength of Performance
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li className="font-semibold text-gray-900">{title}</li>
+          </ol>
+        </div>
+      </nav>
+    );
   }
 
   /**

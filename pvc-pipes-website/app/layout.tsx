@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Open_Sans, Oswald } from "next/font/google";
 import "./globals.css";
 
-import Header from "@/components/Home/Header/Header";
+import Header from "@/components/Helper/Header/Header";
 import BreadcrumbWrapper from "@/components/Helper/BreadcrumbWrapper";
-import Footer from "@/components/Home/Footer/Footer";
+import Footer from "@/components/Helper/Footer/Footer";
 import ScrollToTop from "@/components/Helper/ScrollToTop";
 
 import { getGlobal } from "@/lib/getGlobal";

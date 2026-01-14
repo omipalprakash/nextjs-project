@@ -2,9 +2,17 @@
 
 import { Truck, Clock, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ServicesBlock } from "@/types/services";
+import ReactMarkdown from "react-markdown";
 
-export default function Services() {
+type Props = {
+  data: ServicesBlock;
+};
+
+export default function Services({ data }: Props) {
   const router = useRouter();
+  const link = data.link;
+
   return (
     <section className="section-padding relative overflow-hidden">
       <div className="absolute inset-0">
@@ -23,28 +31,47 @@ export default function Services() {
             <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-green-400" />
           </div>
 
-          <h2 className="lg:text-5xl text-white">
-            Express Service Trucks (ESTs)
-          </h2>
+          <h2 className="lg:text-5xl text-white">{data.heading}</h2>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-green-400 font-medium">
-            Deliver within 24 hours*
-          </p>
+          {data.sub_heading && (
+            <p className="text-lg sm:text-xl md:text-2xl text-green-400 font-medium">
+              {data.sub_heading}
+            </p>
+          )}
 
-          <p className="paragraph text-white/70">
-            Our fleet of Express Service Trucks ensures rapid delivery to your
-            job site, minimizing project delays and keeping your work on
-            schedule.
-          </p>
+          {data.description && (
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => (
+                  <p className="paragraph text-white/70">{children}</p>
+                ),
+              }}
+            >
+              {data.description}
+            </ReactMarkdown>
+          )}
 
-          <button onClick={() => router.push("/contact")} className="btn-green">
-            View Details & Locations
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
+          {link && (
+            <button
+              onClick={() => router.push(link.href)}
+              className="btn-green inline-flex items-center gap-2"
+            >
+              {link.label}
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </button>
+          )}
 
-          <p className="text-white/50 text-xs mt-3 sm:mt-4">
-            *Subject to availability and location. Terms and conditions apply.
-          </p>
+          {data.text && (
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => (
+                  <p className="text-white/50 text-xs">{children}</p>
+                ),
+              }}
+            >
+              {data.text}
+            </ReactMarkdown>
+          )}
         </div>
       </div>
     </section>
