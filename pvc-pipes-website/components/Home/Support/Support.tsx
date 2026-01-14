@@ -9,31 +9,38 @@ import {
   GraduationCap,
   HeadphonesIcon,
 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import { SectionHeadingBlock } from "@/types/section-heading";
 import { ApplicationsBlock } from "@/types/application";
 
 const icons = [Award, FileCheck, Users, Wrench, GraduationCap, HeadphonesIcon];
 
 type SupportProps = {
   data: ApplicationsBlock;
+  heading?: SectionHeadingBlock;
 };
 
-export default function Support({ data }: SupportProps) {
+export default function Support({ data, heading }: SupportProps) {
   return (
     <section className="section-padding bg-white">
       <div className="container">
         {/* Header */}
         <div className="section-box">
-          <h2 className="text-[rgb(11,58,96)] leading-tight">
-            STRENGTH OF SUPPORT
-          </h2>
-          <p className="text-teal-600 font-semibold text-sm md:text-base mb-4">
-            ENGINEERING SERVICES
-          </p>
-          <p className="paragraph">
-            Our engineering team provides live technical training, product
-            guidance, project design services, and field troubleshooting support
-            to ensure your success.
-          </p>
+          {heading?.heading && (
+            <h2 className="text-[rgb(11,58,96)]">{heading.heading}</h2>
+          )}
+
+          {heading?.sub_heading && (
+            <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+              {heading.sub_heading}
+            </p>
+          )}
+
+          {heading?.description && (
+            <div className="paragraph">
+              <ReactMarkdown>{heading.description}</ReactMarkdown>
+            </div>
+          )}
         </div>
 
         {/* Support Grid */}

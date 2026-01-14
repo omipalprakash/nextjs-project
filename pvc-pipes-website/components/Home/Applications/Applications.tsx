@@ -7,9 +7,9 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-
+import ReactMarkdown from "react-markdown";
 import { ApplicationsBlock } from "@/types/application";
-
+import { SectionHeadingBlock } from "@/types/section-heading";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -17,9 +17,10 @@ const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL!;
 
 type ApplicationsProps = {
   data: ApplicationsBlock;
+  heading?: SectionHeadingBlock;
 };
 
-export default function Applications({ data }: ApplicationsProps) {
+export default function Applications({ data, heading }: ApplicationsProps) {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
@@ -28,12 +29,21 @@ export default function Applications({ data }: ApplicationsProps) {
       <div className="container">
         {/* Header */}
         <div className="section-box">
-          <h2 className="text-[rgb(11,58,96)]">APPLICATIONS</h2>
-          <p className="paragraph">
-            With great strength, capacity, and designs for numerous water,
-            sewer, and irrigation needs, our pipe products cover every
-            application for the professional contractor.
-          </p>
+          {heading?.heading && (
+            <h2 className="text-[rgb(11,58,96)]">{heading.heading}</h2>
+          )}
+
+          {heading?.sub_heading && (
+            <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+              {heading.sub_heading}
+            </p>
+          )}
+
+          {heading?.description && (
+            <div className="paragraph">
+              <ReactMarkdown>{heading.description}</ReactMarkdown>
+            </div>
+          )}
         </div>
 
         <div className="relative">

@@ -1,6 +1,6 @@
+import Power from "@/components/Home/Power/Power";
 import { getLandingPage } from "@/lib/getLandingPage";
 import { ApplicationsBlock } from "@/types/application";
-import Power from "@/components/Home/Power/Power";
 
 export default async function PowerPage() {
   const landingPage = await getLandingPage();
@@ -10,16 +10,9 @@ export default async function PowerPage() {
       block.__component === "blocks.card-grid" && block.section_type === "power"
   );
 
+  // Safety fallback (production safe)
   if (!powerBlock) {
-    return (
-      <section className="min-h-screen">
-        <div className="container py-10">
-          <h1 className="text-2xl font-bold text-red-600">
-            Power content not found
-          </h1>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   return <Power data={powerBlock} />;

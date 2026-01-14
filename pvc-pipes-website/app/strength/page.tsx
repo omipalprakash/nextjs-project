@@ -1,18 +1,19 @@
-const StrengthPage = () => {
-  return (
-    <section className="min-h-screen">
-      <div className="container py-10">
-        <h1 className="text-3xl font-bold text-blue-900">
-          Strength of Performance
-        </h1>
+import Power from "@/components/Home/Strength/Strength";
+import { getLandingPage } from "@/lib/getLandingPage";
+import { ApplicationsBlock } from "@/types/application";
 
-        <p className="mt-4 text-gray-600 max-w-2xl">
-          Explore our documentation, resources, tools, and technical information
-          that support performance and reliability.
-        </p>
-      </div>
-    </section>
+export default async function StrengthPage() {
+  const landingPage = await getLandingPage();
+
+  const performanceBlock = landingPage.blocks?.find(
+    (block): block is ApplicationsBlock =>
+      block.__component === "blocks.card-grid" && block.section_type === "power"
   );
-};
 
-export default StrengthPage;
+  // Safety fallback (production safe)
+  if (!performanceBlock) {
+    return null;
+  }
+
+  return <Power data={performanceBlock} />;
+}

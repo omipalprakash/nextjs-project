@@ -9,29 +9,38 @@ import {
   Scale,
 } from "lucide-react";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import { SectionHeadingBlock } from "@/types/section-heading";
 import { ApplicationsBlock } from "@/types/application";
 
 const icons = [FileText, ClipboardList, Calculator, Award, BookOpen, Scale];
 
 type StrengthProps = {
   data: ApplicationsBlock;
+  heading?: SectionHeadingBlock;
 };
 
-export default function Strength({ data }: StrengthProps) {
+export default function Strength({ data, heading }: StrengthProps) {
   return (
     <section className="section-padding bg-gray-50">
       <div className="container">
         {/* Header */}
         <div className="section-box">
-          <h2 className="text-[rgb(11,58,96)]">STRENGTH OF PERFORMANCE</h2>
-          <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
-            Documentation & Resources
-          </p>
-          <p className="paragraph">
-            All you need to know to design and install, includes SDS,
-            specifications, design tools, CAD details, installation
-            instructions, and product information.
-          </p>
+          {heading?.heading && (
+            <h2 className="text-[rgb(11,58,96)]">{heading.heading}</h2>
+          )}
+
+          {heading?.sub_heading && (
+            <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+              {heading.sub_heading}
+            </p>
+          )}
+
+          {heading?.description && (
+            <div className="paragraph">
+              <ReactMarkdown>{heading.description}</ReactMarkdown>
+            </div>
+          )}
         </div>
 
         {/* Cards Grid */}

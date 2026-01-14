@@ -2,6 +2,7 @@ import { HeroBlock } from "@/types/hero";
 import { ApplicationsBlock } from "@/types/application";
 import { GuaranteeBlock } from "@/types/guarantee";
 import { ServicesBlock } from "@/types/services";
+import { SectionHeadingBlock } from "@/types/section-heading";
 
 import Hero from "./Hero/Hero";
 import Applications from "./Applications/Applications";
@@ -13,32 +14,58 @@ import Power from "./Power/Power";
 
 type HomeProps = {
   hero?: HeroBlock;
+
+  applicationsHeading?: SectionHeadingBlock;
   applications?: ApplicationsBlock;
-  guarantee?: GuaranteeBlock;
+
+  supportHeading?: SectionHeadingBlock;
   support?: ApplicationsBlock;
+
+  strengthHeading?: SectionHeadingBlock;
   strength?: ApplicationsBlock;
-  services?: ServicesBlock;
+
+  powerHeading?: SectionHeadingBlock;
   power?: ApplicationsBlock;
+
+  guarantee?: GuaranteeBlock;
+  services?: ServicesBlock;
 };
 
 const Home = ({
   hero,
+
+  applicationsHeading,
   applications,
-  guarantee,
+
+  supportHeading,
   support,
+
+  strengthHeading,
   strength,
-  services,
+
+  powerHeading,
   power,
+
+  guarantee,
+  services,
 }: HomeProps) => {
   return (
     <div className="overflow-hidden">
       {hero && <Hero data={hero} />}
-      {applications && <Applications data={applications} />}
+
+      {applications && (
+        <Applications data={applications} heading={applicationsHeading} />
+      )}
+
       {guarantee && <GuaranteeSection data={guarantee} />}
-      {support && <Support data={support} />}
+
+      {support && <Support data={support} heading={supportHeading} />}
+
       {services && <Services data={services} />}
-      {strength && <Strength data={strength} />}
-      {power && <Power data={power} />}
+
+      {strength && <Strength data={strength} heading={strengthHeading} />}
+
+      {power && <Power data={power} heading={powerHeading} />}
     </div>
   );
 };

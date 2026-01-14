@@ -9,6 +9,14 @@ type Crumb = {
   path: string;
 };
 
+const APPLICATION_TITLES: Record<string, string> = {
+  municipalities: "Municipalities",
+  plumbing: "Plumbing",
+  "storm-water": "Storm Water",
+  "golf-turf": "Golf & Turf",
+  industrial: "Industrial",
+};
+
 const STRENGTH_TITLES: Record<string, string> = {
   "product-installation-guides": "Product Installation Guides",
   "product-catalog": "Product Catalog",
@@ -68,7 +76,58 @@ export default function Breadcrumb() {
       { name: "Home", path: "/" },
       { name: "Strength of Performance", path: "/strength" },
     ],
+
+    "/applications": [
+      { name: "Home", path: "/" },
+      { name: "Applications", path: "/applications" },
+    ],
+
+    "/support": [
+      { name: "Home", path: "/" },
+      { name: "Support", path: "/support" },
+    ],
+
+    "/power": [
+      { name: "Home", path: "/" },
+      { name: "Power", path: "/power" },
+    ],
   };
+
+  /**
+   * ================= APPLICATIONS DETAIL =================
+   * /applications/[slug]
+   * Home > Applications > Page Title
+   */
+  if (pathname.startsWith("/applications/")) {
+    const slug = pathname.split("/")[2];
+    const title = APPLICATION_TITLES[slug] || "Applications";
+
+    return (
+      <nav className="bg-gray-50 border-b border-gray-200 py-3 px-4">
+        <div className="max-w-7xl mx-auto">
+          <ol className="flex items-center gap-2 text-sm text-gray-600">
+            <li>
+              <Link href="/" className="hover:text-gray-900">
+                Home
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li>
+              <Link href="/applications" className="hover:text-gray-900">
+                Applications
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li className="font-semibold text-gray-900">{title}</li>
+          </ol>
+        </div>
+      </nav>
+    );
+  }
 
   /**
    * ================= EVENTS DETAIL =================
