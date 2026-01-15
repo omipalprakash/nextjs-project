@@ -1,5 +1,6 @@
 import { getLandingPage } from "@/lib/getLandingPage";
 import { ApplicationsBlock } from "@/types/application";
+import StrengthClient from "./StrengthClient";
 
 type PageProps = {
   params: Promise<{
@@ -36,17 +37,5 @@ export default async function StrengthDetailPage({ params }: PageProps) {
   }
 
   // ✅ Valid strength detail page
-  return (
-    <section className="min-h-screen">
-      <div className="container py-10">
-        <h1 className="text-3xl font-bold text-blue-900 capitalize">
-          {card.title}
-        </h1>
-
-        {card.description && (
-          <p className="mt-4 text-gray-600 max-w-2xl">{card.description}</p>
-        )}
-      </div>
-    </section>
-  );
+  return <StrengthClient card={card} />;
 }

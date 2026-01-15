@@ -27,19 +27,25 @@ export default function Power({ data, heading }: PowerProps) {
         {/* Header (STATIC as requested) */}
         <div className="section-box">
           {heading?.heading && (
-            <h2 className="text-[rgb(11,58,96)]">{heading.heading}</h2>
+            <h2 className="text-white">{heading.heading}</h2>
           )}
 
           {heading?.sub_heading && (
-            <p className="text-blue-600 text-xs sm:text-sm uppercase tracking-wide mb-3 sm:mb-4">
+            <p className="text-accent font-semibold uppercase tracking-widest text-xs sm:text-sm mb-3 sm:mb-4 text-[#00a35a]">
               {heading.sub_heading}
             </p>
           )}
 
           {heading?.description && (
-            <div className="paragraph">
-              <ReactMarkdown>{heading.description}</ReactMarkdown>
-            </div>
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => (
+                  <p className="paragraph text-white/70">{children}</p>
+                ),
+              }}
+            >
+              {heading.description}
+            </ReactMarkdown>
           )}
         </div>
 

@@ -1,4 +1,4 @@
-import Power from "@/components/Home/Strength/Strength";
+import Strength from "@/components/Home/Strength/Strength";
 import { getLandingPage } from "@/lib/getLandingPage";
 import { ApplicationsBlock } from "@/types/application";
 
@@ -7,7 +7,8 @@ export default async function StrengthPage() {
 
   const performanceBlock = landingPage.blocks?.find(
     (block): block is ApplicationsBlock =>
-      block.__component === "blocks.card-grid" && block.section_type === "power"
+      block.__component === "blocks.card-grid" &&
+      block.section_type === "performance"
   );
 
   // Safety fallback (production safe)
@@ -15,5 +16,5 @@ export default async function StrengthPage() {
     return null;
   }
 
-  return <Power data={performanceBlock} />;
+  return <Strength data={performanceBlock} />;
 }

@@ -1,5 +1,5 @@
 "use client";
-
+import { useBreadcrumb } from "@/components/Helper/BreadcrumbContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { productData } from "@/data/products";
@@ -37,6 +37,7 @@ const EVENT_TITLES: Record<string, string> = {
 
 export default function Breadcrumb() {
   const pathname = usePathname();
+  const { title } = useBreadcrumb();
 
   /**
    * ================= ROUTE CONFIG =================
@@ -189,14 +190,45 @@ export default function Breadcrumb() {
   }
 
   /**
-   * ================= STRENGTH DETAIL =================
-   * /strength/[slug]
-   * Home > Strength of Performance > Page Title
+   * ================= SUPPORT DETAIL =================
+   * /support/[slug]
+   * Home > Support > Page Title (from Context)
    */
-  if (pathname.startsWith("/strength/")) {
-    const slug = pathname.split("/")[2];
-    const title = STRENGTH_TITLES[slug] || "Strength Details";
+  if (pathname.startsWith("/support/") && title) {
+    return (
+      <nav className="bg-gray-50 border-b border-gray-200 py-3 px-4">
+        <div className="max-w-7xl mx-auto">
+          <ol className="flex items-center gap-2 text-sm text-gray-600">
+            <li>
+              <Link href="/" className="hover:text-gray-900">
+                Home
+              </Link>
+            </li>
 
+            <span className="text-gray-400">›</span>
+
+            <li>
+              <Link href="/support" className="hover:text-gray-900">
+                Support
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li className="font-semibold text-gray-900">{title}</li>
+          </ol>
+        </div>
+      </nav>
+    );
+  }
+
+  /**
+   * ================= Strength DETAIL =================
+   * /strength/[slug]
+   * Home > Strength > Page Title (from Context)
+   */
+
+  if (pathname.startsWith("/strength/") && title) {
     return (
       <nav className="bg-gray-50 border-b border-gray-200 py-3 px-4">
         <div className="max-w-7xl mx-auto">
@@ -211,7 +243,41 @@ export default function Breadcrumb() {
 
             <li>
               <Link href="/strength" className="hover:text-gray-900">
-                Strength of Performance
+                Strength
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li className="font-semibold text-gray-900">{title}</li>
+          </ol>
+        </div>
+      </nav>
+    );
+  }
+
+  /**
+   * ================= Power DETAIL =================
+   * /power/[slug]
+   * Home > Power > Page Title (from Context)
+   */
+
+  if (pathname.startsWith("/power/") && title) {
+    return (
+      <nav className="bg-gray-50 border-b border-gray-200 py-3 px-4">
+        <div className="max-w-7xl mx-auto">
+          <ol className="flex items-center gap-2 text-sm text-gray-600">
+            <li>
+              <Link href="/" className="hover:text-gray-900">
+                Home
+              </Link>
+            </li>
+
+            <span className="text-gray-400">›</span>
+
+            <li>
+              <Link href="/power" className="hover:text-gray-900">
+                Power
               </Link>
             </li>
 

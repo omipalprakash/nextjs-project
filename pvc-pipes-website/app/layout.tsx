@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Open_Sans, Oswald } from "next/font/google";
 import "./globals.css";
 
 import Header from "@/components/Helper/Header/Header";
+import { BreadcrumbProvider } from "@/components/Helper/BreadcrumbContext";
 import BreadcrumbWrapper from "@/components/Helper/BreadcrumbWrapper";
 import Footer from "@/components/Helper/Footer/Footer";
 import ScrollToTop from "@/components/Helper/ScrollToTop";
@@ -63,8 +64,10 @@ export default async function RootLayout({
         className={`${openSans.variable} ${oswald.variable} ${geistSans.variable} ${geistMono.variable} font-open-sans antialiased bg-white text-[#67737e] leading-1.5`}
       >
         <Header headerData={global.header} topnavData={global.topnav} />
-        <BreadcrumbWrapper />
-        <main>{children}</main>
+        <BreadcrumbProvider>
+          <BreadcrumbWrapper />
+          <main>{children}</main>
+        </BreadcrumbProvider>
         <Footer footerData={global.footer} />
         <ScrollToTop />
       </body>

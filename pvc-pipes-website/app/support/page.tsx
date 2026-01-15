@@ -1,4 +1,4 @@
-import Power from "@/components/Home/Support/Support";
+import Support from "@/components/Home/Support/Support";
 import { getLandingPage } from "@/lib/getLandingPage";
 import { ApplicationsBlock } from "@/types/application";
 
@@ -7,7 +7,8 @@ export default async function SupportPage() {
 
   const supportBlock = landingPage.blocks?.find(
     (block): block is ApplicationsBlock =>
-      block.__component === "blocks.card-grid" && block.section_type === "power"
+      block.__component === "blocks.card-grid" &&
+      block.section_type === "support"
   );
 
   // Safety fallback (production safe)
@@ -15,5 +16,5 @@ export default async function SupportPage() {
     return null;
   }
 
-  return <Power data={supportBlock} />;
+  return <Support data={supportBlock} />;
 }

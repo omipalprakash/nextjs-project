@@ -1,5 +1,6 @@
 import { getLandingPage } from "@/lib/getLandingPage";
 import { ApplicationsBlock } from "@/types/application";
+import SupportClient from "./SupportClient";
 
 type PageProps = {
   params: Promise<{
@@ -34,15 +35,5 @@ export default async function SupportDetailPage({ params }: PageProps) {
     );
   }
 
-  return (
-    <section className="min-h-screen">
-      <div className="container py-10">
-        <h1 className="text-3xl font-bold text-blue-900 capitalize">
-          {card.title}
-        </h1>
-
-        <p className="mt-4 text-gray-600 max-w-2xl">{card.description}</p>
-      </div>
-    </section>
-  );
+  return <SupportClient card={card} />;
 }

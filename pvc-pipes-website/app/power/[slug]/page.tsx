@@ -1,5 +1,6 @@
 import { getLandingPage } from "@/lib/getLandingPage";
 import { ApplicationsBlock } from "@/types/application";
+import PowerClient from "./PowerClient";
 
 type PageProps = {
   params: Promise<{
@@ -33,15 +34,5 @@ export default async function PowerDetailPage({ params }: PageProps) {
     );
   }
 
-  return (
-    <section className="min-h-screen">
-      <div className="container py-12">
-        <h1 className="text-3xl font-bold text-blue-900">{card.title}</h1>
-
-        {card.description && (
-          <p className="mt-4 text-gray-600 max-w-2xl">{card.description}</p>
-        )}
-      </div>
-    </section>
-  );
+  return <PowerClient card={card} />;
 }
