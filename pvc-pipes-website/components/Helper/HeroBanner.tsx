@@ -1,19 +1,42 @@
-export default function HeroBanner() {
+import Image from "next/image";
+
+const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL!;
+
+type Props = {
+  banner?: {
+    type: "IMAGE" | "VIDEO";
+    image?: { url: string };
+    video?: { url: string };
+  };
+};
+
+export default function HeroBanner({ banner }: Props) {
+  if (!banner) return null;
+
   return (
-    <section className="relative min-h-[350px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[500px] overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
+    <section className="relative min-h-[400px] overflow-hidden">
+      {banner.type === "IMAGE" && banner.image && (
+        <Image
+          src={`${STRAPI_URL}${banner.image.url}`}
+          alt="Hero Banner"
+          fill
+          className="object-cover"
+          priority
+        />
+      )}
+
+      {banner.type === "VIDEO" && banner.video && (
         <video
           className="w-full h-full object-cover"
-          src="/video/hero-video.mp4"
+          src={`${STRAPI_URL}${banner.video.url}`}
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-[rgba(11,58,96,0.95)] via-[rgba(11,58,96,0.8)] to-[rgba(11,58,96,0.4)] md:via-[rgba(11,58,96,0.7)] md:to-transparent" />
-      </div>
+      )}
+
+      <div className="absolute inset-0 bg-gradient-to-r from-[rgba(11,58,96,0.9)] to-transparent" />
     </section>
   );
 }

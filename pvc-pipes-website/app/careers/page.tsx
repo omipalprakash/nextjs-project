@@ -1,13 +1,18 @@
+import { getPageBySlug } from "@/lib/getPageBySlug";
 import HeroBanner from "../../components/Helper/HeroBanner";
-import Employment from "./components/Employment";
+import EmploymentFromStrapi from "./components/EmploymentFromStrapi";
 
-const CareersPage = () => {
+export default async function CareersPage() {
+  const page = await getPageBySlug("careers");
+
+  if (!page) return null;
+
+  const block = page.blocks?.[0];
+
   return (
     <>
-      <HeroBanner />
-      <Employment />
+      <HeroBanner banner={block?.banner} />
+      <EmploymentFromStrapi content={block?.content} />
     </>
   );
-};
-
-export default CareersPage;
+}
